@@ -1,5 +1,14 @@
 const players = [
-
+  {
+    "id": 1,
+    "name": "DoloresKingGMD",
+    "completedDemons": []
+  },
+  {
+    "id": 2,
+    "name": "Walen0k",
+    "completedDemons": []
+  }
 ];
 
 // Функция для получения игрока по ID
