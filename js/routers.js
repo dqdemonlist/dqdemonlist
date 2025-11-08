@@ -328,7 +328,7 @@ renderHome() {
             
             ${topDemon ? `
             <div class="top-demon-card">
-                <h3>🔥 Demonlist</h3>
+                <h3>🔥 Top 1 Demon</h3>
                 <div class="demon-info">
                     <span class="demon-name">${topDemon.name}</span>
                     <span class="demon-points">${topDemon.points} points</span>
