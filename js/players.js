@@ -8,14 +8,16 @@ const players = [
       4,
       5,
       6,
-      7
+      7,
+      8
     ]
   },
   {
     "id": 2,
     "name": "Walen0k",
     "completedDemons": [
-      6
+      3,
+      7
     ]
   }
 ];

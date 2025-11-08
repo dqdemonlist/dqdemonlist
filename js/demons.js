@@ -4,24 +4,24 @@ const demons = [
     "name": "Beetle",
     "creator": "Cirtrax",
     "verifier": 1,
-    "verifyDate": "2025-11-08",
+    "verifyDate": "2025-10-02",
     "completers": [
       {
         "playerId": 1,
-        "date": "2025-11-08"
+        "date": "2025-10-02"
       }
     ]
   },
   {
     "id": 2,
-    "name": "Acropolis",
+    "name": "Acropols",
     "creator": "Zobros",
     "verifier": 1,
-    "verifyDate": "2025-11-08",
+    "verifyDate": "2025-09-29",
     "completers": [
       {
         "playerId": 1,
-        "date": "2025-11-08"
+        "date": "2025-09-29"
       }
     ]
   },
@@ -30,67 +30,80 @@ const demons = [
     "name": "Crazy II",
     "creator": "DavJT",
     "verifier": 2,
-    "verifyDate": "2025-11-08",
+    "verifyDate": "2025-10-29",
     "completers": [
       {
         "playerId": 2,
-        "date": "2025-11-08"
+        "date": "2025-10-29"
       }
     ]
   },
   {
     "id": 4,
-    "name": "Psychosis",
-    "creator": "Hinds",
+    "name": "Quantum Variations",
+    "creator": "Darwin",
     "verifier": 1,
-    "verifyDate": "2025-11-08",
+    "verifyDate": "2025-10-28",
     "completers": [
       {
         "playerId": 1,
-        "date": "2025-11-08"
+        "date": "2025-10-28"
       }
     ]
   },
   {
     "id": 5,
-    "name": "The Furious",
-    "creator": "Knobbelboy",
+    "name": "Psychosis",
+    "creator": "Hinds",
     "verifier": 1,
-    "verifyDate": "2025-11-08",
+    "verifyDate": "2025-09-29",
     "completers": [
       {
         "playerId": 1,
-        "date": "2025-11-08"
+        "date": "2025-09-29"
       }
     ]
   },
   {
     "id": 6,
-    "name": "Ruuun",
-    "creator": "CherryTeam",
+    "name": "The Furious",
+    "creator": "Knobbelboy",
     "verifier": 1,
-    "verifyDate": "2025-11-08",
+    "verifyDate": "2024-07-12",
     "completers": [
       {
         "playerId": 1,
-        "date": "2025-11-08"
-      },
-      {
-        "playerId": 2,
-        "date": "2025-11-08"
+        "date": "2024-07-12"
       }
     ]
   },
   {
     "id": 7,
-    "name": "Ascent",
-    "creator": "JustBasic",
+    "name": "Ruuun",
+    "creator": "CherryTeam",
     "verifier": 1,
-    "verifyDate": "2025-11-08",
+    "verifyDate": "2025-06-01",
     "completers": [
       {
         "playerId": 1,
-        "date": "2025-11-08"
+        "date": "2025-06-01"
+      },
+      {
+        "playerId": 2,
+        "date": "2025-04-08"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Ascent",
+    "creator": "JustBasic",
+    "verifier": 1,
+    "verifyDate": "2025-09-18",
+    "completers": [
+      {
+        "playerId": 1,
+        "date": "2025-09-18"
       }
     ]
   }
