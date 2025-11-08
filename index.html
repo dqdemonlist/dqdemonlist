@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolores Squad's Lists</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/modal.css">
+    <link rel="stylesheet" href="styles/particles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Частицы на фоне -->
+    <div class="particles-background">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Dolores Squad's Lists</h2>
+            </div>
+            <div class="nav-menu">
+                <!-- Навигационные ссылки -->
+                <a href="#/" class="nav-link">Main</a>
+                <a href="#/demons" class="nav-link">Demonlist</a>
+                <a href="#/players" class="nav-link">Players list</a>
+                <a href="#/future" class="nav-link">Future Demon</a>
+                <a href="#/rules" class="nav-link">Rules</a>
+                
+                <!-- Иконки -->
+                <div class="nav-icons">
+                    <!-- Discord кнопка -->
+                    <button class="discord-btn" title="Discord Сервер">
+                        <svg class="discord-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.18.33.25c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02zM8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12zm6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12z"/>
+                        </svg>
+                    </button>
+                    
+                    <!-- Переключатель темы -->
+                    <button class="theme-toggle" title="Toggle Theme">
+                        <!-- Тема будет добавляться через JS -->
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main id="app" class="main-content">
+        <!-- Контент будет загружаться через router -->
+    </main>
+
+    <!-- Модальные окна -->
+    <div id="demonModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="demonModalContent"></div>
+        </div>
+    </div>
+
+    <div id="playerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="playerModalContent"></div>
+        </div>
+    </div>
+
+    <div id="futureDemonModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="futureDemonModalContent"></div>
+        </div>
+    </div>
+
+    <script src="js/list.js"></script>
+    <script src="js/demons.js"></script>
+    <script src="js/players.js"></script>
+    <script src="js/futuredemons.js"></script>
+    <script src="js/routers.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
