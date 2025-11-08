@@ -14,7 +14,7 @@ function calculateDemonPoints(position) {
 }
 
 // ДЛЯ ДОЛОРЕСА (РАССТАВЛЕНИЕ ТОПА)
-const demonList = [];
+const demonList = [1, 2, 3, 4, 5, 6, 7];
 
 // Функция для получения топа демонов с рассчитанными очками
 function getDemonLeaderboard() {
