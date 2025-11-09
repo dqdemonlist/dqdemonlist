@@ -36,13 +36,13 @@ const futureDemons = [
     "beatingPlayers": [
       {
         "playerId": 2,
-        "progress": 72,
-        "lastUpdate": "2025-11-05"
+        "progress": 98,
+        "lastUpdate": "2025-11-09"
       },
       {
         "playerId": 1,
-        "progress": 32,
-        "lastUpdate": "2025-11-08"
+        "progress": 89,
+        "lastUpdate": "2025-11-09"
       }
     ]
   }
