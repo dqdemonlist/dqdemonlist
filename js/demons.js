@@ -18,7 +18,7 @@ const demons = [
   },
   {
     "id": 2,
-    "name": "Acropols",
+    "name": "Acropolis",
     "creator": "Zobros",
     "verifier": 1,
     "verifyDate": "2025-09-29",
