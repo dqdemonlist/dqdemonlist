@@ -19,6 +19,13 @@ const players = [
       3,
       7
     ]
+  },
+  {
+    "id": 3,
+    "name": "What",
+    "completedDemons": [
+      1
+    ]
   }
 ];
 
