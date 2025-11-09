@@ -24,7 +24,9 @@ const players = [
     "id": 3,
     "name": "What",
     "completedDemons": [
-      1
+      1,
+      3,
+      2
     ]
   }
 ];

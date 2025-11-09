@@ -26,6 +26,10 @@ const demons = [
       {
         "playerId": 1,
         "date": "2025-09-29"
+      },
+      {
+        "playerId": 3,
+        "date": "2025-07-09"
       }
     ]
   },
@@ -39,6 +43,10 @@ const demons = [
       {
         "playerId": 2,
         "date": "2025-10-29"
+      },
+      {
+        "playerId": 3,
+        "date": "2025-05-12"
       }
     ]
   },
