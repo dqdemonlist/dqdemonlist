@@ -9,7 +9,8 @@ const players = [
       5,
       6,
       7,
-      8
+      8,
+      10
     ]
   },
   {
@@ -26,7 +27,8 @@ const players = [
     "completedDemons": [
       1,
       3,
-      2
+      2,
+      9
     ]
   }
 ];
