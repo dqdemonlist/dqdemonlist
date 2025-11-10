@@ -118,6 +118,19 @@ const demons = [
         "date": "2025-09-18"
       }
     ]
+  },
+  {
+    "id": 9,
+    "name": "Necropolis",
+    "creator": "IIINepTuneIII",
+    "verifier": 3,
+    "verifyDate": "2025-11-10",
+    "completers": [
+      {
+        "playerId": 3,
+        "date": "2025-11-10"
+      }
+    ]
   }
 ];
 
