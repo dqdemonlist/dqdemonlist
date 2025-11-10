@@ -1,5 +1,4 @@
 const futureDemons = [
-  
   {
     "id": 1,
     "name": "Void Wave",
@@ -11,25 +10,6 @@ const futureDemons = [
         "playerId": 1,
         "progress": 39,
         "lastUpdate": "2025-09-25"
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "name": "Acu",
-    "creator": "Neigefeu",
-    "difficulty": "Extreme Demon",
-    "description": "Очень фановый уровень, легкий для своей сложности.",
-    "beatingPlayers": [
-      {
-        "playerId": 2,
-        "progress": 98,
-        "lastUpdate": "2025-11-09"
-      },
-      {
-        "playerId": 1,
-        "progress": 89,
-        "lastUpdate": "2025-11-09"
       }
     ]
   }

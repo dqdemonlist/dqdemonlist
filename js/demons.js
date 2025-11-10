@@ -131,6 +131,19 @@ const demons = [
         "date": "2025-11-10"
       }
     ]
+  },
+  {
+    "id": 10,
+    "name": "Acu",
+    "creator": "Neigefeu",
+    "verifier": 1,
+    "verifyDate": "2025-11-10",
+    "completers": [
+      {
+        "playerId": 1,
+        "date": "2025-11-10"
+      }
+    ]
   }
 ];
 
