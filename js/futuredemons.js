@@ -1,20 +1,7 @@
 const futureDemons = [
+  
   {
     "id": 1,
-    "name": "Necropolis",
-    "creator": "IIINepTuneIII",
-    "difficulty": "Insane Demon",
-    "description": "Сложноватый уровень со старым типажом геймплея, строющегося на примитивных таймингах.",
-    "beatingPlayers": [
-      {
-        "playerId": 3,
-        "progress": 94,
-        "lastUpdate": "2025-11-09"
-      }
-    ]
-  },
-  {
-    "id": 2,
     "name": "Void Wave",
     "creator": "CherryTeam",
     "difficulty": "Extreme Demon",
@@ -28,7 +15,7 @@ const futureDemons = [
     ]
   },
   {
-    "id": 3,
+    "id": 2,
     "name": "Acu",
     "creator": "Neigefeu",
     "difficulty": "Extreme Demon",
