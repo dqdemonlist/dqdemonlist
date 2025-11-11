@@ -144,6 +144,19 @@ const demons = [
         "date": "2025-11-10"
       }
     ]
+  },
+  {
+    "id": 11,
+    "name": "Windy Landscape",
+    "creator": "WOOGI1411",
+    "verifier": 3,
+    "verifyDate": "2025-11-11",
+    "completers": [
+      {
+        "playerId": 3,
+        "date": "2025-11-11"
+      }
+    ]
   }
 ];
 
