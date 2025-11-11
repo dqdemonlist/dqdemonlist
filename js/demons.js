@@ -1,6 +1,6 @@
 const demons = [
   {
-    "id": 1,
+    "id": 2,
     "name": "Beetle",
     "creator": "Cirtrax",
     "verifier": 1,
@@ -17,7 +17,7 @@ const demons = [
     ]
   },
   {
-    "id": 2,
+    "id": 4,
     "name": "Acropolis",
     "creator": "Zobros",
     "verifier": 1,
@@ -34,7 +34,7 @@ const demons = [
     ]
   },
   {
-    "id": 3,
+    "id": 5,
     "name": "Crazy II",
     "creator": "DavJT",
     "verifier": 2,
@@ -51,7 +51,7 @@ const demons = [
     ]
   },
   {
-    "id": 4,
+    "id": 7,
     "name": "Quantum Variations",
     "creator": "Darwin",
     "verifier": 1,
@@ -64,7 +64,7 @@ const demons = [
     ]
   },
   {
-    "id": 5,
+    "id": 8,
     "name": "Psychosis",
     "creator": "Hinds",
     "verifier": 1,
@@ -77,7 +77,7 @@ const demons = [
     ]
   },
   {
-    "id": 6,
+    "id": 9,
     "name": "The Furious",
     "creator": "Knobbelboy",
     "verifier": 1,
@@ -90,7 +90,7 @@ const demons = [
     ]
   },
   {
-    "id": 7,
+    "id": 10,
     "name": "Ruuun",
     "creator": "CherryTeam",
     "verifier": 1,
@@ -107,7 +107,7 @@ const demons = [
     ]
   },
   {
-    "id": 8,
+    "id": 11,
     "name": "Ascent",
     "creator": "JustBasic",
     "verifier": 1,
@@ -120,7 +120,7 @@ const demons = [
     ]
   },
   {
-    "id": 9,
+    "id": 3,
     "name": "Necropolis",
     "creator": "IIINepTuneIII",
     "verifier": 3,
@@ -133,7 +133,7 @@ const demons = [
     ]
   },
   {
-    "id": 10,
+    "id": 1,
     "name": "Acu",
     "creator": "Neigefeu",
     "verifier": 1,
@@ -169,3 +169,4 @@ function getDemonById(id) {
 function getAllDemons() {
     return demons;
 }
+
