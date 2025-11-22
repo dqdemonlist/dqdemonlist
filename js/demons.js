@@ -158,6 +158,32 @@ const demons = [
         "date": "2025-11-11"
       }
     ]
+  },
+  {
+    "id": 12,
+    "name": "Cataclysm",
+    "creator": "GgBoy",
+    "verifier": 1,
+    "verifyDate": "2025-11-15",
+    "completers": [
+      {
+        "playerId": 1,
+        "date": "2025-11-15"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Rupture",
+    "creator": "Jekko",
+    "verifier": 3,
+    "verifyDate": "2025-11-15",
+    "completers": [
+      {
+        "playerId": 3,
+        "date": "2025-11-15"
+      }
+    ]
   }
 ];
 

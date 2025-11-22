@@ -548,6 +548,7 @@ renderStats() {
 
     app.innerHTML = html;
 }
+
     // === НОВАЯ ВКЛАДКА: SEND RECORD ===
     renderSendRecord() {
         const app = document.getElementById('app');
@@ -733,9 +734,182 @@ renderStats() {
             return false;
         }
     }
+
+renderSendRecord() {
+    const app = document.getElementById('app');
+    
+    // Получаем данные
+    const demons = getAllDemons();
+    const players = getAllPlayers();
+    const topSize = demonList.length;
+
+    // Генерируем <option> для демонов
+    const demonOptions = demons.map(d => `<option value="${d.id}">${d.name}</option>`).join('');
+    const playerOptions = players.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+    const positionOptions = Array.from({length: topSize}, (_, i) => i + 1)
+        .map(pos => `<option value="${pos}">#${pos}</option>`).join('');
+
+    const html = `
+        <div class="send-record-container">
+            <h1 class="page-title">📤 Send Your Record</h1>
+            <form id="recordForm" class="record-form">
+                <!-- Сложность -->
+                <div class="form-group">
+                    <label>1. Какой сложности демон вы прошли?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="difficulty" value="Extreme Demon" required> Extreme Demon</label>
+                        <label><input type="radio" name="difficulty" value="Insane Demon" required> Insane Demon</label>
+                        <label><input type="radio" name="difficulty" value="Hard Demon" required> Hard Demon</label>
+                        <label><input type="radio" name="difficulty" value="Medium Demon" required> Medium Demon</label>
+                        <label><input type="radio" name="difficulty" value="Easy Demon" required> Easy Demon</label>
+                    </div>
+                </div>
+
+                <!-- Выбор демона -->
+                <div class="form-group">
+                    <label>2. Какой демон вы прошли?</label>
+                    <select id="demonSelect" class="form-select" required>
+                        <option value="">— Выберите из списка —</option>
+                        ${demonOptions}
+                    </select>
+                    <input type="text" id="customDemon" class="form-input" placeholder="Или введите название вручную...">
+                </div>
+
+                <!-- Выбор игрока -->
+                <div class="form-group">
+                    <label>Ваш ник?</label>
+                    <select id="playerSelect" class="form-select" required>
+                        <option value="">— Выберите из топа —</option>
+                        ${playerOptions}
+                    </select>
+                    <input type="text" id="customPlayer" class="form-input" placeholder="Или введите ник вручную...">
+                </div>
+
+                <!-- YouTube -->
+                <div class="form-group">
+                    <label>3. Видео на YouTube</label>
+                    <input type="url" id="youtubeLink" class="form-input" placeholder="https://youtu.be/..." required>
+                </div>
+
+                <!-- Облако -->
+                <div class="form-group">
+                    <label>4. Видео на Yandex Disk / Google Drive</label>
+                    <input type="url" id="cloudLink" class="form-input" placeholder="Ссылка на облако..." required>
+                </div>
+
+                <!-- Позиция в топе -->
+                <div class="form-group">
+                    <label>5. Какой по топу, уровень который вы прошли по вашему мнению?</label>
+                    <select id="positionSelect" class="form-select" required>
+                        <option value="">— Выберите позицию —</option>
+                        ${positionOptions}
+                    </select>
+                </div>
+
+                <!-- Контакт -->
+                <div class="form-group">
+                    <label>6. Ваш Discord / Telegram для связи</label>
+                    <input type="text" id="contactInfo" class="form-input" placeholder="Пример: @doloreskinggmd" required>
+                </div>
+
+                <!-- Кнопка -->
+                <button type="submit" id="submitBtn" class="submit-btn" disabled>
+                    📤 Отправить рекорд
+                </button>
+            </form>
+        </div>
+    `;
+
+    app.innerHTML = html;
+
+    // Добавляем JS-логику
+    this.initSendRecordForm();
+}
+initSendRecordForm() {
+    const form = document.getElementById('recordForm');
+    const demonSelect = document.getElementById('demonSelect');
+    const customDemon = document.getElementById('customDemon');
+    const playerSelect = document.getElementById('playerSelect');
+    const customPlayer = document.getElementById('customPlayer');
+    const youtubeLink = document.getElementById('youtubeLink');
+    const cloudLink = document.getElementById('cloudLink');
+    const positionSelect = document.getElementById('positionSelect');
+    const contactInfo = document.getElementById('contactInfo');
+    const submitBtn = document.getElementById('submitBtn');
+
+    const updateSubmitButton = () => {
+        const difficultySelected = document.querySelector('input[name="difficulty"]:checked') !== null;
+        const demonChosen = demonSelect.value || customDemon.value.trim();
+        const playerChosen = playerSelect.value || customPlayer.value.trim();
+        const youtubeValid = youtubeLink.value.trim() && this.isValidUrl(youtubeLink.value);
+        const cloudValid = cloudLink.value.trim() && this.isValidUrl(cloudLink.value);
+        const positionValid = positionSelect.value;
+        const contactValid = contactInfo.value.trim();
+
+        submitBtn.disabled = !(difficultySelected && demonChosen && playerChosen && youtubeValid && cloudValid && positionValid && contactValid);
+    };
+
+    // Слушатели
+    [demonSelect, customDemon, playerSelect, customPlayer, youtubeLink, cloudLink, positionSelect, contactInfo].forEach(el => {
+        el.addEventListener('input', updateSubmitButton);
+    });
+    document.querySelectorAll('input[name="difficulty"]').forEach(radio => {
+        radio.addEventListener('change', updateSubmitButton);
+    });
+
+    // Отправка формы
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const difficulty = document.querySelector('input[name="difficulty"]:checked').value;
+        const demonName = demonSelect.value
+            ? getDemonById(parseInt(demonSelect.value))?.name || ''
+            : customDemon.value.trim();
+        const playerName = playerSelect.value
+            ? getPlayerById(parseInt(playerSelect.value))?.name || ''
+            : customPlayer.value.trim();
+        const position = positionSelect.value;
+        const youtube = youtubeLink.value.trim();
+        const cloud = cloudLink.value.trim();
+        const contact = contactInfo.value.trim();
+
+        const payload = {
+            difficulty,
+            demonName,
+            playerName,
+            position,
+            youtube,
+            cloud,
+            contact
+        };
+
+        try {
+                const res = await fetch('https://dqdemonlist-sendrecinfo.hdigdi89.workers.dev', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (res.ok) {
+                alert('✅ Ваш рекорд успешно отправлен! Модераторы скоро проверят.');
+                form.reset();
+                submitBtn.disabled = true;
+            } else {
+                alert('❌ Ошибка отправки. Попробуйте позже.');
+            }
+        } catch (err) {
+            alert('📡 Не удалось подключиться к серверу.');
+        }
+    });
 }
 
-
-
-
-const router = new Router();
+isValidUrl(string) {
+    try {
+        new URL(string);
+        return true;
+    } catch (_) {
+        return false;
+    }
+}
+}
+const router = new Router()
