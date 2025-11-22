@@ -5,7 +5,9 @@ class Router {
             '/demons': this.renderDemons,
             '/players': this.renderPlayers,
             '/future': this.renderFutureDemons,
-            '/rules': this.renderRules
+            '/rules': this.renderRules,
+            '/send-record': this.renderSendRecord,
+            '/stats': this.renderStats
         };
         
         this.init();
@@ -387,7 +389,343 @@ renderHome() {
         </div>
     `;
 }
+// ===== НОВАЯ ВКЛАДКА: СТАТИСТИКА =====
+renderStats() {
+    const app = document.getElementById('app');
+
+    // --- Общая статистика ---
+    const totalPlayers = getTotalPlayers();
+    const totalDemons = getTotalDemons();
+    const totalFutureDemons = getTotalFutureDemons();
+    const totalCompletions = getTotalCompletions();
+    const avgCompletions = totalDemons ? (totalCompletions / totalDemons).toFixed(2) : 0;
+    const totalPoints = getTotalPointsDistributed();
+
+    // --- Лидеры ---
+    const topPlayer = getPlayerWithMostPoints();
+    const topDemon = getMostCompletedDemon();
+    const demons = getAllDemons();
+    const newestDemon = demons.reduce((a, b) => new Date(a.verifyDate) > new Date(b.verifyDate) ? a : b);
+    const oldestDemon = demons.reduce((a, b) => new Date(a.verifyDate) < new Date(b.verifyDate) ? a : b);
+
+    const playerMostBeats = getAllPlayers().reduce((a, b) => a.completedDemons.length > b.completedDemons.length ? a : b);
+
+    // --- Активность (последние 10 прохождений) ---
+    const allCompletions = [];
+    demons.forEach(demon => {
+        demon.completers.forEach(c => {
+            allCompletions.push({
+                player: getPlayerById(c.playerId)?.name || 'Unknown',
+                demon: demon.name,
+                date: c.date
+            });
+        });
+    });
+    const recent10 = allCompletions
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(0, 10);
+
+    // --- Временные показатели ---
+    const dates = allCompletions.map(c => new Date(c.date));
+    const firstCompletion = dates.length ? new Date(Math.min(...dates)) : null;
+    const lastCompletion = dates.length ? new Date(Math.max(...dates)) : null;
+
+    // --- Активность за последние 30 дней ---
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    const recentCompletions = allCompletions.filter(c => new Date(c.date) >= thirtyDaysAgo);
+    const activePlayersMap = {};
+    recentCompletions.forEach(c => {
+        activePlayersMap[c.player] = (activePlayersMap[c.player] || 0) + 1;
+    });
+    const activePlayers = Object.entries(activePlayersMap)
+        .map(([name, count]) => ({ name, count }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 5);
+
+    // --- Форматирование дат ---
+    const formatDateStat = (d) => d ? d.toLocaleDateString('ru-RU') : '—';
+
+    // --- Генерация HTML ---
+    const html = `
+        <div class="stats-full-container">
+            <h1 class="page-title">📊 Полная статистика</h1>
+
+            <!-- Общая статистика -->
+            <div class="stats-section">
+                <h2>📈 Общая статистика</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><div class="stat-value">${totalDemons}</div><div class="stat-label">Демонов в топе</div></div>
+                    <div class="stat-box"><div class="stat-value">${totalPlayers}</div><div class="stat-label">Игроков</div></div>
+                    <div class="stat-box"><div class="stat-value">${totalFutureDemons}</div><div class="stat-label">Будущих демонов</div></div>
+                    <div class="stat-box"><div class="stat-value">${totalCompletions}</div><div class="stat-label">Всего прохождений</div></div>
+                    <div class="stat-box"><div class="stat-value">${avgCompletions}</div><div class="stat-label">Среднее на демон</div></div>
+                    <div class="stat-box"><div class="stat-value">${totalPoints}</div><div class="stat-label">Всего очков</div></div>
+                </div>
+            </div>
+
+            <!-- Лидеры -->
+            <div class="stats-section">
+                <h2>🏆 Лидеры</h2>
+                <div class="stats-grid">
+                    <div class="stat-box leader">
+                        <div class="stat-label">Лучший игрок</div>
+                        <div class="stat-value">${topPlayer ? topPlayer.name : '—'}</div>
+                        <div class="stat-sub">${topPlayer ? calculatePlayerPoints(topPlayer.id) + ' очков' : ''}</div>
+                    </div>
+                    <div class="stat-box leader">
+                        <div class="stat-label">Самый активный</div>
+                        <div class="stat-value">${playerMostBeats ? playerMostBeats.name : '—'}</div>
+                        <div class="stat-sub">${playerMostBeats ? playerMostBeats.completedDemons.length + ' демонов' : ''}</div>
+                    </div>
+                    <div class="stat-box leader">
+                        <div class="stat-label">Самый популярный демон</div>
+                        <div class="stat-value">${topDemon ? topDemon.name : '—'}</div>
+                        <div class="stat-sub">${topDemon ? topDemon.completers.length + ' прохождений' : ''}</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Самый новый</div>
+                        <div class="stat-value">${newestDemon?.name || '—'}</div>
+                        <div class="stat-sub">${newestDemon ? formatDateStat(new Date(newestDemon.verifyDate)) : ''}</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Самый старый</div>
+                        <div class="stat-value">${oldestDemon?.name || '—'}</div>
+                        <div class="stat-sub">${oldestDemon ? formatDateStat(new Date(oldestDemon.verifyDate)) : ''}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Активность -->
+            <div class="stats-section">
+                <h2>🔥 Активность (последние 30 дней)</h2>
+                <div class="active-players-list">
+                    ${activePlayers.length ? activePlayers.map(p => `
+                        <div class="active-player-item">
+                            <span class="player-name">${p.name}</span>
+                            <span class="completion-count">${p.count} прохождений</span>
+                        </div>
+                    `).join('') : '<p>Нет активности за последние 30 дней</p>'}
+                </div>
+            </div>
+
+            <!-- Последние прохождения -->
+            <div class="stats-section">
+                <h2>🕐 Последние 10 прохождений</h2>
+                <div class="recent-completions-list">
+                    ${recent10.length ? recent10.map(c => `
+                        <div class="recent-item">
+                            <span class="player">${c.player}</span> →
+                            <span class="demon">${c.demon}</span>
+                            <span class="date">${formatDate(c.date)}</span>
+                        </div>
+                    `).join('') : '<p>Прохождений пока нет</p>'}
+                </div>
+            </div>
+
+            <!-- Временные рамки -->
+            <div class="stats-section">
+                <h2>⏳ Хронология</h2>
+                <div class="timeline-stats">
+                    <div class="timeline-item">
+                        <span class="label">Первое прохождение:</span>
+                        <span class="value">${formatDateStat(firstCompletion)}</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="label">Последнее прохождение:</span>
+                        <span class="value">${formatDateStat(lastCompletion)}</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="label">Охват времени:</span>
+                        <span class="value">${firstCompletion && lastCompletion ? 
+                            Math.round((lastCompletion - firstCompletion) / (1000 * 60 * 60 * 24)) + ' дней' 
+                            : '—'}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    app.innerHTML = html;
 }
+renderSendRecord() {
+    const app = document.getElementById('app');
+    
+    // Получаем данные
+    const demons = getAllDemons();
+    const players = getAllPlayers();
+    const topSize = demonList.length;
+
+    // Генерируем <option> для демонов
+    const demonOptions = demons.map(d => `<option value="${d.id}">${d.name}</option>`).join('');
+    const playerOptions = players.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+    const positionOptions = Array.from({length: topSize}, (_, i) => i + 1)
+        .map(pos => `<option value="${pos}">#${pos}</option>`).join('');
+
+    const html = `
+        <div class="send-record-container">
+            <h1 class="page-title">📤 Send Your Record</h1>
+            <form id="recordForm" class="record-form">
+                <!-- Сложность -->
+                <div class="form-group">
+                    <label>1. Какой сложности демон вы прошли?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="difficulty" value="Extreme Demon" required> Extreme Demon</label>
+                        <label><input type="radio" name="difficulty" value="Insane Demon" required> Insane Demon</label>
+                        <label><input type="radio" name="difficulty" value="Hard Demon" required> Hard Demon</label>
+                        <label><input type="radio" name="difficulty" value="Medium Demon" required> Medium Demon</label>
+                        <label><input type="radio" name="difficulty" value="Easy Demon" required> Easy Demon</label>
+                    </div>
+                </div>
+
+                <!-- Выбор демона -->
+                <div class="form-group">
+                    <label>2. Какой демон вы прошли?</label>
+                    <select id="demonSelect" class="form-select" required>
+                        <option value="">— Выберите из списка —</option>
+                        ${demonOptions}
+                    </select>
+                    <input type="text" id="customDemon" class="form-input" placeholder="Или введите название вручную...">
+                </div>
+
+                <!-- Выбор игрока -->
+                <div class="form-group">
+                    <label>Ваш ник?</label>
+                    <select id="playerSelect" class="form-select" required>
+                        <option value="">— Выберите из топа —</option>
+                        ${playerOptions}
+                    </select>
+                    <input type="text" id="customPlayer" class="form-input" placeholder="Или введите ник вручную...">
+                </div>
+
+                <!-- YouTube -->
+                <div class="form-group">
+                    <label>3. Видео на YouTube</label>
+                    <input type="url" id="youtubeLink" class="form-input" placeholder="https://youtu.be/..." required>
+                </div>
+
+                <!-- Облако -->
+                <div class="form-group">
+                    <label>4. Видео на Yandex Disk / Google Drive</label>
+                    <input type="url" id="cloudLink" class="form-input" placeholder="Ссылка на облако..." required>
+                </div>
+
+                <!-- Позиция в топе -->
+                <div class="form-group">
+                    <label>5. Какой по топу, уровень который вы прошли по вашему мнению?</label>
+                    <select id="positionSelect" class="form-select" required>
+                        <option value="">— Выберите позицию —</option>
+                        ${positionOptions}
+                    </select>
+                </div>
+
+                <!-- Контакт -->
+                <div class="form-group">
+                    <label>6. Ваш Discord / Telegram для связи</label>
+                    <input type="text" id="contactInfo" class="form-input" placeholder="Пример: @doloreskinggmd" required>
+                </div>
+
+                <!-- Кнопка -->
+                <button type="submit" id="submitBtn" class="submit-btn" disabled>
+                    📤 Отправить рекорд
+                </button>
+            </form>
+        </div>
+    `;
+
+    app.innerHTML = html;
+
+    // Добавляем JS-логику
+    this.initSendRecordForm();
+}
+initSendRecordForm() {
+    const form = document.getElementById('recordForm');
+    const demonSelect = document.getElementById('demonSelect');
+    const customDemon = document.getElementById('customDemon');
+    const playerSelect = document.getElementById('playerSelect');
+    const customPlayer = document.getElementById('customPlayer');
+    const youtubeLink = document.getElementById('youtubeLink');
+    const cloudLink = document.getElementById('cloudLink');
+    const positionSelect = document.getElementById('positionSelect');
+    const contactInfo = document.getElementById('contactInfo');
+    const submitBtn = document.getElementById('submitBtn');
+
+    const updateSubmitButton = () => {
+        const difficultySelected = document.querySelector('input[name="difficulty"]:checked') !== null;
+        const demonChosen = demonSelect.value || customDemon.value.trim();
+        const playerChosen = playerSelect.value || customPlayer.value.trim();
+        const youtubeValid = youtubeLink.value.trim() && this.isValidUrl(youtubeLink.value);
+        const cloudValid = cloudLink.value.trim() && this.isValidUrl(cloudLink.value);
+        const positionValid = positionSelect.value;
+        const contactValid = contactInfo.value.trim();
+
+        submitBtn.disabled = !(difficultySelected && demonChosen && playerChosen && youtubeValid && cloudValid && positionValid && contactValid);
+    };
+
+    // Слушатели
+    [demonSelect, customDemon, playerSelect, customPlayer, youtubeLink, cloudLink, positionSelect, contactInfo].forEach(el => {
+        el.addEventListener('input', updateSubmitButton);
+    });
+    document.querySelectorAll('input[name="difficulty"]').forEach(radio => {
+        radio.addEventListener('change', updateSubmitButton);
+    });
+
+    // Отправка формы
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const difficulty = document.querySelector('input[name="difficulty"]:checked').value;
+        const demonName = demonSelect.value
+            ? getDemonById(parseInt(demonSelect.value))?.name || ''
+            : customDemon.value.trim();
+        const playerName = playerSelect.value
+            ? getPlayerById(parseInt(playerSelect.value))?.name || ''
+            : customPlayer.value.trim();
+        const position = positionSelect.value;
+        const youtube = youtubeLink.value.trim();
+        const cloud = cloudLink.value.trim();
+        const contact = contactInfo.value.trim();
+
+        const payload = {
+            difficulty,
+            demonName,
+            playerName,
+            position,
+            youtube,
+            cloud,
+            contact
+        };
+
+        try {
+                const res = await fetch('https://dqdemonlist-sendrecinfo.hdigdi89.workers.dev', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (res.ok) {
+                alert('✅ Ваш рекорд успешно отправлен! Модераторы скоро проверят.');
+                form.reset();
+                submitBtn.disabled = true;
+            } else {
+                alert('❌ Ошибка отправки. Попробуйте позже.');
+            }
+        } catch (err) {
+            alert('📡 Не удалось подключиться к серверу.');
+        }
+    });
+}
+
+isValidUrl(string) {
+    try {
+        new URL(string);
+        return true;
+    } catch (_) {
+        return false;
+    }
+}
+}
+
 
 
 const router = new Router();
