@@ -1338,3 +1338,82 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
 }
+/* Выпадающее меню */
+.nav-dropdown { position: relative; display: inline-block; }
+.dropdown-btn {
+    background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color);
+    padding: 12px 24px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;
+}
+.dropdown-btn:hover { background: var(--accent-primary); color: white; }
+.dropdown-content {
+    display: none; position: absolute; top: 100%; left: 0; background: var(--bg-secondary);
+    border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 8px 30px var(--shadow-color);
+    z-index: 1000; min-width: 200px; overflow: hidden;
+}
+.dropdown-content a {
+    display: block; padding: 12px 20px; color: var(--text-secondary); text-decoration: none;
+    transition: all 0.2s ease; border-bottom: 1px solid var(--border-color);
+}
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { background: var(--bg-tertiary); color: var(--text-primary); transform: translateX(5px); }
+.nav-dropdown:hover .dropdown-content { display: block; }
+.dropdown-link.active { background: var(--accent-primary); color: white !important; }
+
+@media (max-width: 768px) {
+    .nav-dropdown { width: 100%; }
+    .dropdown-btn { width: 100%; text-align: center; border-radius: 12px; }
+    .dropdown-content { position: static; box-shadow: none; border: none; background: var(--bg-primary); }
+    .nav-menu { flex-direction: column; gap: 8px; }
+}
+
+/* Скилл */
+.player-skill { font-weight: 700; color: var(--accent-secondary); font-size: 1rem; min-width: 120px; text-align: right; }
+.subtitle { text-align: center; color: var(--text-secondary); margin-bottom: 1.5rem; font-style: italic; }
+
+/* Статистика */
+.stats-full-container { max-width: 1000px; margin: 0 auto; }
+.stats-section { margin-bottom: 2.5rem; }
+.stats-section h2 { margin-bottom: 1.2rem; color: var(--accent-primary); font-size: 1.6rem; font-weight: 700; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.2rem; }
+.stat-box { background: var(--card-bg); padding: 1.2rem; border-radius: 12px; text-align: center; border: 1px solid var(--border-color); }
+.stat-box.leader { border-left: 4px solid var(--accent-primary); text-align: left; }
+.stat-value { font-size: 1.8rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.3rem; }
+.stat-sub { font-size: 0.9rem; color: var(--text-secondary); }
+.stat-label { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+.active-players-list, .recent-completions-list {
+    background: var(--bg-card); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--border-color);
+}
+.active-player-item, .recent-item {
+    display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--border-color);
+}
+.active-player-item:last-child, .recent-item:last-child { border-bottom: none; }
+.timeline-stats {
+    background: var(--bg-card); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--border-color);
+}
+.timeline-item { display: flex; justify-content: space-between; padding: 0.5rem 0; }
+.timeline-item .label { color: var(--text-secondary); }
+.timeline-item .value { font-weight: 600; color: var(--accent-primary); }
+
+/* Send Record */
+.send-record-container { max-width: 700px; margin: 0 auto; padding: 2rem; }
+.record-form { display: flex; flex-direction: column; gap: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-primary); }
+.form-input, .form-select {
+    width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);
+    background: var(--bg-secondary); color: var(--text-primary); font-size: 1rem;
+}
+.radio-group {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.5rem;
+}
+.radio-group label {
+    display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem;
+    background: var(--card-bg); border-radius: 8px; cursor: pointer; transition: background 0.2s;
+}
+.radio-group input[type="radio"] { accent-color: var(--accent-primary); }
+.submit-btn {
+    padding: 1rem 2rem; font-size: 1.1rem; font-weight: 700; background: var(--accent-primary);
+    color: white; border: none; border-radius: 12px; cursor: not-allowed; opacity: 0.6;
+    transition: all 0.3s ease;
+}
+.submit-btn:enabled { cursor: pointer; opacity: 1; transform: translateY(0); }
+.submit-btn:enabled:hover { background: #ff2a41; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4); }

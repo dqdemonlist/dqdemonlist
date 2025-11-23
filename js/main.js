@@ -342,3 +342,25 @@ document.addEventListener('DOMContentLoaded', () => {
     initDiscordButton();
     console.log('GD Demonlist initialized successfully!');
 });
+// ——— СКИЛЛ-МЕТРИКИ ———
+const SKILL_ALPHA = 5;
+
+function calculateAbsoluteSkill(playerId) {
+    const player = getPlayerById(playerId);
+    if (!player) return 0;
+    const points = calculatePlayerPoints(playerId);
+    const beaten = player.completedDemons.length;
+    return points + SKILL_ALPHA * beaten;
+}
+
+function calculateRelativeSkill(playerId) {
+    const allPlayers = getAllPlayers();
+    if (!allPlayers.length) return 0;
+    let topSkill = 0;
+    for (const p of allPlayers) {
+        const s = calculateAbsoluteSkill(p.id);
+        if (s > topSkill) topSkill = s;
+    }
+    const skill = calculateAbsoluteSkill(playerId);
+    return topSkill > 0 ? (100 * skill / topSkill) : 0;
+}
