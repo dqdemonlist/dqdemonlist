@@ -340,6 +340,29 @@ document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initModals();
     initDiscordButton();
+
+    // === ПОКАЗ МОДАЛЬНОГО ОКНА С ЛИЦЕНЗИЕЙ ===
+    const licenseModal = document.getElementById('licenseModal');
+    const closeBtn = document.getElementById('closeLicenseModal');
+    const hasAccepted = localStorage.getItem('licenseAccepted') === 'true';
+
+    if (!hasAccepted) {
+        licenseModal.style.display = 'flex';
+    }
+
+    closeBtn?.addEventListener('click', () => {
+        licenseModal.style.display = 'none';
+        localStorage.setItem('licenseAccepted', 'true');
+    });
+
+    // Закрытие по клику вне контента
+    licenseModal?.addEventListener('click', (e) => {
+        if (e.target === licenseModal) {
+            licenseModal.style.display = 'none';
+            localStorage.setItem('licenseAccepted', 'true');
+        }
+    });
+
     console.log('GD Demonlist initialized successfully!');
 });
 // ——— СКИЛЛ-МЕТРИКИ ———

@@ -1417,3 +1417,79 @@ body {
 }
 .submit-btn:enabled { cursor: pointer; opacity: 1; transform: translateY(0); }
 .submit-btn:enabled:hover { background: #ff2a41; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4); }
+
+/* Модальное окно лицензии */
+.license-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+.license-modal-content {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+.license-header h2 {
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.license-body {
+    margin: 1.2rem 0;
+    color: var(--text-primary);
+    line-height: 1.6;
+    text-align: center;
+}
+.license-body p {
+    margin: 0.6rem 0;
+}
+.license-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+.license-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    min-width: 120px;
+}
+.license-btn-primary {
+    background: var(--accent-primary);
+    color: white;
+}
+.license-btn-primary:hover {
+    background: #ff2a41;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+}
+.license-btn-secondary {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+.license-btn-secondary:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
