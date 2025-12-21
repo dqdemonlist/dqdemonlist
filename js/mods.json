@@ -1,8 +1,8 @@
 [
   {
     "name": "Globed",
-    "downloadUrl": "https://github.com/DankMemes/globed/releases/download/v1.0/globed.geode",
-    "filename": "dank_memes.globed.geode",
-    "isMandatory": true
+    "downloadUrl": "https://github.com/GlobedGD/globed2/releases/latest/download/dankmeme.globed2.geode",
+    "filename": "dankmeme.globed2.geode",
+    "isMandatory": false
   }
 ]
