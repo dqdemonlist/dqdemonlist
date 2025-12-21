@@ -1,19 +1,20 @@
-// Для лаунчера, на сайт никак не влияет
-const mods = [
+[
     {
-        name: "Globed",
-        version: "v1.5.0",
-        description: "Мультиплеер для Geometry Dash.",
-        repo: "dankmeme01/globed2", // Владелец/Репозиторий
-        filename: "Globed.geode",
-        category: "mandatory" // "mandatory" (обязательные) или "other" (остальные)
+        "id": "globed",
+        "name": "Globed",
+        "version": "1.2.1",
+        "description": "Многопользовательский мод для игры в реальном времени.",
+        "downloadUrl": "https://example.com/files/globed.geode",
+        "filename": "dank_memes.globed.geode",
+        "isMandatory": true
     },
     {
-        name: "Node IDs",
-        version: "v1.2.0",
-        description: "Показывает ID объектов в редакторе.",
-        repo: "geode-sdk/node-ids",
-        filename: "NodeIds.geode",
-        category: "other"
+        "id": "node-ids",
+        "name": "Node IDs",
+        "version": "1.0.0",
+        "description": "Необходим для корректной работы других модов.",
+        "downloadUrl": "https://example.com/files/geode.node-ids.geode",
+        "filename": "geode.node-ids.geode",
+        "isMandatory": false
     }
-];
+]
