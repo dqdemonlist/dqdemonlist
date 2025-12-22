@@ -1,23 +1,5 @@
 [
     {
-        "name": "Eclipse",
-        "downloadUrl": "https://github.com/EclipseMenu/EclipseMenu",
-        "filename": "eclipse.eclipse-menu.geode",
-        "isMandatory": false
-    },
-    {
-        "name": "Betteredit",
-        "downloadUrl": "https://github.com/HJfod/BetterEdit",
-        "filename": "hjfod.betteredit.geode",
-        "isMandatory": false
-    },
-    {
-        "name": "Betterinfo",
-        "downloadUrl": "https://github.com/Cvolton/betterinfo-geode",
-        "filename": "cvolton.betterinfo.geode",
-        "isMandatory": false
-    },
-    {
         "name": "NodeIDs",
         "downloadUrl": "https://github.com/geode-sdk/NodeIDs",
         "filename": "geode.node-ids.geode",
