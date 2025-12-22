@@ -1,5 +1,11 @@
 [
     {
+        "name": "Betterinfo",
+        "downloadUrl": "https://github.com/Cvolton/betterinfo-geode",
+        "filename": "cvolton.betterinfo.geode",
+        "isMandatory": false
+    },
+    {
         "name": "NodeIDs",
         "downloadUrl": "https://github.com/geode-sdk/NodeIDs",
         "filename": "geode.node-ids.geode",
