@@ -33,6 +33,13 @@ const players = [
       11,
       13
     ]
+  },
+  {
+    "id": 4,
+    "name": "GMDNurka",
+    "completedDemons": [
+      10
+    ]
   }
 ];
 
