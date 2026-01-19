@@ -48,6 +48,10 @@ const demons = [
       {
         "playerId": 3,
         "date": "2025-05-12"
+      },
+      {
+        "playerId": 4,
+        "date": "2025-03-08"
       }
     ]
   },
@@ -188,6 +192,14 @@ const demons = [
         "date": "2025-11-15"
       }
     ]
+  },
+  {
+    "id": 14,
+    "name": "Poltergeist",
+    "creator": "AndromedaGMD",
+    "verifier": "4",
+    "verifyDate": "2025-03-28",
+    "completers": []
   }
 ];
 
