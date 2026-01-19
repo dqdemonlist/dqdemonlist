@@ -199,7 +199,12 @@ const demons = [
     "creator": "AndromedaGMD",
     "verifier": "4",
     "verifyDate": "2025-03-28",
-    "completers": []
+    "completers": [
+      {
+        "playerId": 4,
+        "date": "2025-03-28"
+      }
+    ]
   }
 ];
 
