@@ -40,7 +40,8 @@ const players = [
     "completedDemons": [
       10,
       3,
-      14
+      14,
+      15
     ]
   }
 ];

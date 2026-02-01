@@ -205,6 +205,19 @@ const demons = [
         "date": "2025-03-28"
       }
     ]
+  },
+  {
+    "id": 15,
+    "name": "Sweater Weather",
+    "creator": "VelYT",
+    "verifier": "4",
+    "verifyDate": "2026-01-31",
+    "completers": [
+      {
+        "playerId": 4,
+        "date": "2026-01-31"
+      }
+    ]
   }
 ];
 
