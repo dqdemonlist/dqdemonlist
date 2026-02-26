@@ -212,12 +212,15 @@ const demons = [
     "creator": "VelYT",
     "verifier": "4",
     "verifyDate": "2026-01-31",
-    "completers": [
-      {
-        "playerId": 4,
-        "date": "2026-01-31"
-      }
-    ]
+    "completers": []
+  },
+  {
+    "id": 16,
+    "name": "Gravity",
+    "creator": "KazaGD",
+    "verifier": "5",
+    "verifyDate": "2026-02-26",
+    "completers": []
   }
 ];
 

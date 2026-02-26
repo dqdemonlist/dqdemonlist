@@ -1,19 +1,4 @@
-const futureDemons = [
-  {
-    "id": 1,
-    "name": "Void Wave",
-    "creator": "CherryTeam",
-    "difficulty": "Extreme Demon",
-    "description": "Длинный и очень атмосферный уровень с сложным геймплеем лоу-экстрима.",
-    "beatingPlayers": [
-      {
-        "playerId": 1,
-        "progress": 39,
-        "lastUpdate": "2025-09-25"
-      }
-    ]
-  }
-];
+const futureDemons = [];
 
 // Функция для получения будущего демона по ID
 function getFutureDemonById(id) {
