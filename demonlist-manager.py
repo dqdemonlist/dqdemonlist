@@ -1119,10 +1119,17 @@ class DemonlistGUI:
             d_id = int(d_str.split(':')[0])
             p_id = int(p_str.split(':')[0])
             date = self.completion_date.get()
-            
+
             demons = self.load_demons()
             players = self.load_players()
-            
+
+            # Find the demon to get verifier info
+            demon_obj = None
+            for d in demons:
+                if d['id'] == d_id:
+                    demon_obj = d
+                    break
+
             # Update Demon
             for d in demons:
                 if d['id'] == d_id:
@@ -1130,15 +1137,22 @@ class DemonlistGUI:
                     if not any(c['playerId'] == p_id for c in d['completers']):
                         d['completers'].append({"playerId": p_id, "date": date})
                     break
-            
-            # Update Player
+
+            # Update Player (who completed the demon)
             for p in players:
                 if p['id'] == p_id:
                     if 'completedDemons' not in p: p['completedDemons'] = []
                     if d_id not in p['completedDemons']:
                         p['completedDemons'].append(d_id)
                     break
-            
+
+            # Check if the player is the verifier - if so, give verifier points
+            if demon_obj and 'verifier' in demon_obj:
+                verifier_id = demon_obj['verifier']
+                if verifier_id == p_id:
+                    # Player is the verifier, already gets the demon in completedDemons above
+                    pass
+
             self.save_demons(demons)
             self.save_players(players)
             messagebox.showinfo("Успех", "Прохождение добавлено!")
