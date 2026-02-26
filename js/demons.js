@@ -197,7 +197,7 @@ const demons = [
     "id": 14,
     "name": "Poltergeist",
     "creator": "AndromedaGMD",
-    "verifier": "4",
+    "verifier": 4,
     "verifyDate": "2025-03-28",
     "completers": [
       {
@@ -210,7 +210,7 @@ const demons = [
     "id": 15,
     "name": "Sweater Weather",
     "creator": "VelYT",
-    "verifier": "4",
+    "verifier": 4,
     "verifyDate": "2026-01-31",
     "completers": []
   },
@@ -218,7 +218,7 @@ const demons = [
     "id": 16,
     "name": "Gravity",
     "creator": "KazaGD",
-    "verifier": "5",
+    "verifier": 5,
     "verifyDate": "2026-02-26",
     "completers": []
   }
