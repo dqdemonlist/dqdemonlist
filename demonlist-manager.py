@@ -1023,21 +1023,54 @@ class DemonlistGUI:
             name = self.demon_name.get().strip()
             if not name: return
             demons = self.load_demons()
+            players = self.load_players()
+            
             next_id = max([d['id'] for d in demons] + [0]) + 1
+            verifier_str = self.demon_verifier.get().strip()
+            verify_date = self.demon_date.get()
+            
+            # Try to get verifier ID from players
+            verifier_id = None
+            if verifier_str:
+                try:
+                    verifier_id = int(verifier_str)
+                except ValueError:
+                    # If verifier is a name, try to find the player
+                    for p in players:
+                        if p['name'].lower() == verifier_str.lower():
+                            verifier_id = p['id']
+                            break
+            
             new_demon = {
                 "id": next_id,
                 "name": name,
                 "creator": self.demon_creator.get(),
-                "verifier": self.demon_verifier.get(),
-                "verifyDate": self.demon_date.get(),
+                "verifier": verifier_id if verifier_id else verifier_str,
+                "verifyDate": verify_date,
                 "completers": []
             }
+            
+            # Add verifier as first completer if verifier is a player ID
+            if verifier_id:
+                new_demon["completers"].append({"playerId": verifier_id, "date": verify_date})
+                
+                # Add demon to verifier's completedDemons
+                for p in players:
+                    if p['id'] == verifier_id:
+                        if 'completedDemons' not in p:
+                            p['completedDemons'] = []
+                        if next_id not in p['completedDemons']:
+                            p['completedDemons'].append(next_id)
+                        break
+            
             demons.append(new_demon)
             self.save_demons(demons)
+            self.save_players(players)
+            
             self.demon_name.delete(0, tk.END)
             self.demon_creator.delete(0, tk.END)
             self.demon_verifier.delete(0, tk.END)
-            messagebox.showinfo("Успех", "Демон добавлен!")
+            messagebox.showinfo("Успех", "Демон добавлен! Верификатор получил очки.")
             self.load_data()
         except Exception as e:
             messagebox.showerror("Ошибка", str(e))
