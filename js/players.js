@@ -35,15 +35,6 @@ const players = [
     ]
   },
   {
-    "id": 4,
-    "name": "GMDNurka",
-    "completedDemons": [
-      10,
-      3,
-      14
-    ]
-  },
-  {
     "id": 5,
     "name": "kitcat43129",
     "completedDemons": []
