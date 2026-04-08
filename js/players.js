@@ -38,6 +38,11 @@ const players = [
     "id": 5,
     "name": "kitcat43129",
     "completedDemons": []
+  },
+  {
+    "id": 6,
+    "name": "GMDNurka",
+    "completedDemons": []
   }
 ];
 
