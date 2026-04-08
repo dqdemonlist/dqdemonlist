@@ -1051,17 +1051,9 @@ class DemonlistGUI:
             }
             
             # Add verifier as first completer if verifier is a player ID
+            # Note: Verifier is NOT added to completedDemons - they get credit via verification
             if verifier_id:
                 new_demon["completers"].append({"playerId": verifier_id, "date": verify_date})
-                
-                # Add demon to verifier's completedDemons
-                for p in players:
-                    if p['id'] == verifier_id:
-                        if 'completedDemons' not in p:
-                            p['completedDemons'] = []
-                        if next_id not in p['completedDemons']:
-                            p['completedDemons'].append(next_id)
-                        break
             
             demons.append(new_demon)
             self.save_demons(demons)

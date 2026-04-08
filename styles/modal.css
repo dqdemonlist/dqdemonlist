@@ -239,6 +239,16 @@
     font-size: 0.8rem;
 }
 
+.demon-card-verified {
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(255, 107, 107, 0.1) 100%);
+    border-color: #ff6b6b;
+}
+
+.demon-card-verified:hover {
+    border-color: #ff4757;
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+}
+
 /* Будущие демоны */
 .difficulty-badge {
     background: var(--accent-future);

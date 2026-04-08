@@ -128,10 +128,11 @@ function openDemonModal(demonId) {
 function openPlayerModal(playerId) {
     const player = getPlayerById(playerId);
     if (!player) return;
-    
+
     const playerPoints = calculatePlayerPoints(playerId);
     const playerDemons = getPlayerDemons(playerId);
-    
+    const verifiedDemons = getPlayerVerifiedDemons(playerId);
+
     const demonsHTML = playerDemons.map(demon => {
         const demonPosition = demonList.indexOf(demon.id) + 1;
         const demonPoints = calculateDemonPoints(demonPosition);
@@ -142,13 +143,35 @@ function openPlayerModal(playerId) {
             </div>
         `;
     }).join('');
-    
+
+    const verifiedDemonsHTML = verifiedDemons.map(demon => {
+        const demonPosition = demonList.indexOf(demon.id) + 1;
+        const demonPoints = calculateDemonPoints(demonPosition);
+        return `
+            <div class="demon-card demon-card-verified" data-demon-id="${demon.id}">
+                <div class="demon-card-name">${demon.name}</div>
+                <div class="demon-card-rank">#${demonPosition} • ${demonPoints} points • Verified</div>
+            </div>
+        `;
+    }).join('');
+
+    const verifiedSectionHTML = verifiedDemons.length > 0 ? `
+        <div class="demons-completed-section">
+            <h3 class="demons-completed-title">Verified Demons</h3>
+            <div class="demons-grid-container">
+                <div class="demons-grid">
+                    ${verifiedDemonsHTML}
+                </div>
+            </div>
+        </div>
+    ` : '';
+
     const modalContent = document.getElementById('playerModalContent');
     modalContent.innerHTML = `
         <div class="player-modal-header">
             <h2 class="player-modal-name">${player.name}</h2>
         </div>
-        
+
         <div class="player-modal-stats">
             <div class="stat-item">
                 <div class="stat-label">All points</div>
@@ -156,10 +179,19 @@ function openPlayerModal(playerId) {
             </div>
             <div class="stat-item">
                 <div class="stat-label">Demons beated</div>
-                <div class="stat-value">${player.completedDemons.length}</div>
+                <div class="stat-value">${playerDemons.length}</div>
             </div>
+            ${verifiedDemons.length > 0 ? `
+            <div class="stat-item">
+                <div class="stat-label">Verified</div>
+                <div class="stat-value">${verifiedDemons.length}</div>
+            </div>
+            ` : ''}
         </div>
-        
+
+        ${verifiedSectionHTML}
+
+        ${playerDemons.length > 0 ? `
         <div class="demons-completed-section">
             <h3 class="demons-completed-title">Demons beated</h3>
             <div class="demons-grid-container">
@@ -168,8 +200,9 @@ function openPlayerModal(playerId) {
                 </div>
             </div>
         </div>
+        ` : ''}
     `;
-    
+
     // Добавляем обработчики для карточек демонов
     setTimeout(() => {
         document.querySelectorAll('#playerModalContent .demon-card').forEach(card => {
@@ -180,7 +213,7 @@ function openPlayerModal(playerId) {
             });
         });
     }, 0);
-    
+
     document.getElementById('playerModal').style.display = 'block';
 }
 

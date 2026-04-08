@@ -2,37 +2,17 @@ const players = [
   {
     "id": 1,
     "name": "DoloresKingGMD",
-    "completedDemons": [
-      10,
-      1,
-      2,
-      4,
-      5,
-      6,
-      7,
-      8,
-      12
-    ]
+    "completedDemons": []
   },
   {
     "id": 2,
     "name": "Walen0k",
-    "completedDemons": [
-      3,
-      7
-    ]
+    "completedDemons": [7]
   },
   {
     "id": 3,
     "name": "What",
-    "completedDemons": [
-      1,
-      2,
-      3,
-      9,
-      11,
-      13
-    ]
+    "completedDemons": [1, 2]
   },
   {
     "id": 5,
@@ -43,16 +23,13 @@ const players = [
     "id": 6,
     "name": "GMDNurka",
     "completedDemons": [
-      17,
       3
     ]
   },
   {
     "id": 7,
     "name": "KizyakGD",
-    "completedDemons": [
-      18
-    ]
+    "completedDemons": []
   }
 ];
 
@@ -66,18 +43,48 @@ function getAllPlayers() {
     return players;
 }
 
-// Функция для получения демонов игрока
+// Функция для получения демонов игрока (исключая верифицированные)
 function getPlayerDemons(playerId) {
     const player = getPlayerById(playerId);
     if (!player) return [];
-    
-    return player.completedDemons.map(demonId => {
-        const demon = getDemonById(demonId);
-        return {
-            ...demon,
-            completionDate: getCompletionDate(playerId, demonId)
-        };
+
+    // Получаем ID демонов, которые игрок верифицировал
+    const verifiedDemonIds = new Set();
+    getAllDemons().forEach(demon => {
+        if (demon.verifier === playerId) {
+            verifiedDemonIds.add(demon.id);
+        }
     });
+
+    // Возвращаем только те демоны, которые игрок НЕ верифицировал
+    return player.completedDemons
+        .filter(demonId => !verifiedDemonIds.has(demonId))
+        .map(demonId => {
+            const demon = getDemonById(demonId);
+            return {
+                ...demon,
+                completionDate: getCompletionDate(playerId, demonId),
+                isVerified: false
+            };
+        });
+}
+
+// Функция для получения верифицированных демонов игрока (включая те, что в completedDemons)
+function getPlayerVerifiedDemons(playerId) {
+    const player = getPlayerById(playerId);
+    if (!player) return [];
+
+    const verifiedDemons = [];
+    getAllDemons().forEach(demon => {
+        if (demon.verifier === playerId) {
+            verifiedDemons.push({
+                ...demon,
+                verifyDate: demon.verifyDate,
+                isVerified: true
+            });
+        }
+    });
+    return verifiedDemons;
 }
 
 // Функция для получения даты прохождения демона игроком
@@ -93,14 +100,31 @@ function getCompletionDate(playerId, demonId) {
 function calculatePlayerPoints(playerId) {
     const player = getPlayerById(playerId);
     if (!player) return 0;
-    
+
     let totalPoints = 0;
+    const countedDemons = new Set();
+
+    // Очки за пройденные демоны (из completedDemons)
     player.completedDemons.forEach(demonId => {
         const demonIndex = demonList.indexOf(demonId);
-        if (demonIndex !== -1) {
+        if (demonIndex !== -1 && !countedDemons.has(demonId)) {
             const position = demonIndex + 1;
             totalPoints += calculateDemonPoints(position);
+            countedDemons.add(demonId);
         }
     });
+
+    // Очки за верифицированные демоны (даже если игрок не в completers)
+    getAllDemons().forEach(demon => {
+        if (demon.verifier === playerId && !countedDemons.has(demon.id)) {
+            const demonIndex = demonList.indexOf(demon.id);
+            if (demonIndex !== -1) {
+                const position = demonIndex + 1;
+                totalPoints += calculateDemonPoints(position);
+                countedDemons.add(demon.id);
+            }
+        }
+    });
+
     return totalPoints;
 }

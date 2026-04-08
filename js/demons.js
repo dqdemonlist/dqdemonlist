@@ -8,10 +8,6 @@ const demons = [
     "verifyDate": "2025-10-02",
     "completers": [
       {
-        "playerId": 1,
-        "date": "2025-10-02"
-      },
-      {
         "playerId": 3,
         "date": "2025-11-04"
       }
@@ -25,10 +21,6 @@ const demons = [
     "verifyDate": "2025-09-29",
     "completers": [
       {
-        "playerId": 1,
-        "date": "2025-09-29"
-      },
-      {
         "playerId": 3,
         "date": "2025-07-09"
       }
@@ -41,10 +33,6 @@ const demons = [
     "verifier": 2,
     "verifyDate": "2025-10-29",
     "completers": [
-      {
-        "playerId": 2,
-        "date": "2025-10-29"
-      },
       {
         "playerId": 3,
         "date": "2025-05-12"
@@ -61,12 +49,7 @@ const demons = [
     "creator": "Darwin",
     "verifier": 1,
     "verifyDate": "2025-10-28",
-    "completers": [
-      {
-        "playerId": 1,
-        "date": "2025-10-28"
-      }
-    ]
+    "completers": []
   },
   {
     "id": 5,
@@ -74,12 +57,7 @@ const demons = [
     "creator": "Hinds",
     "verifier": 1,
     "verifyDate": "2025-09-29",
-    "completers": [
-      {
-        "playerId": 1,
-        "date": "2025-09-29"
-      }
-    ]
+    "completers": []
   },
   {
     "id": 6,
@@ -87,12 +65,7 @@ const demons = [
     "creator": "Knobbelboy",
     "verifier": 1,
     "verifyDate": "2024-07-12",
-    "completers": [
-      {
-        "playerId": 1,
-        "date": "2024-07-12"
-      }
-    ]
+    "completers": []
   },
   {
     "id": 7,
@@ -101,10 +74,6 @@ const demons = [
     "verifier": 1,
     "verifyDate": "2025-06-01",
     "completers": [
-      {
-        "playerId": 1,
-        "date": "2025-06-01"
-      },
       {
         "playerId": 2,
         "date": "2025-04-08"
@@ -117,12 +86,7 @@ const demons = [
     "creator": "JustBasic",
     "verifier": 1,
     "verifyDate": "2025-09-18",
-    "completers": [
-      {
-        "playerId": 1,
-        "date": "2025-09-18"
-      }
-    ]
+    "completers": []
   },
   {
     "id": 9,
@@ -130,12 +94,7 @@ const demons = [
     "creator": "IIINepTuneIII",
     "verifier": 3,
     "verifyDate": "2025-11-10",
-    "completers": [
-      {
-        "playerId": 3,
-        "date": "2025-11-10"
-      }
-    ]
+    "completers": []
   },
   {
     "id": 10,
@@ -143,12 +102,7 @@ const demons = [
     "creator": "Neigefeu",
     "verifier": 1,
     "verifyDate": "2025-11-10",
-    "completers": [
-      {
-        "playerId": 1,
-        "date": "2025-11-10"
-      }
-    ]
+    "completers": []
   },
   {
     "id": 11,
@@ -156,12 +110,7 @@ const demons = [
     "creator": "WOOGI1411",
     "verifier": 3,
     "verifyDate": "2025-11-11",
-    "completers": [
-      {
-        "playerId": 3,
-        "date": "2025-11-11"
-      }
-    ]
+    "completers": []
   },
   {
     "id": 12,
@@ -169,12 +118,7 @@ const demons = [
     "creator": "GgBoy",
     "verifier": 1,
     "verifyDate": "2025-11-15",
-    "completers": [
-      {
-        "playerId": 1,
-        "date": "2025-11-15"
-      }
-    ]
+    "completers": []
   },
   {
     "id": 13,
@@ -182,12 +126,7 @@ const demons = [
     "creator": "Jekko",
     "verifier": 3,
     "verifyDate": "2025-11-15",
-    "completers": [
-      {
-        "playerId": 3,
-        "date": "2025-11-15"
-      }
-    ]
+    "completers": []
   },
   {
     "id": 14,
@@ -219,12 +158,7 @@ const demons = [
     "creator": "Riot",
     "verifier": 6,
     "verifyDate": "2026-03-01",
-    "completers": [
-      {
-        "playerId": 6,
-        "date": "2026-03-01"
-      }
-    ]
+    "completers": []
   },
   {
     "id": 18,
@@ -232,12 +166,7 @@ const demons = [
     "creator": "Giron",
     "verifier": 7,
     "verifyDate": "2025-12-16",
-    "completers": [
-      {
-        "playerId": 7,
-        "date": "2025-12-16"
-      }
-    ]
+    "completers": []
   }
 ];
 
