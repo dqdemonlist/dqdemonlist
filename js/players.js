@@ -43,7 +43,8 @@ const players = [
     "id": 6,
     "name": "GMDNurka",
     "completedDemons": [
-      17
+      17,
+      3
     ]
   },
   {
