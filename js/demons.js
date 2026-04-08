@@ -197,7 +197,7 @@ const demons = [
     "id": 15,
     "name": "Sweater Weather",
     "creator": "VelYT",
-    "verifier": 4,
+    "verifier": 6,
     "verifyDate": "2026-01-31",
     "completers": []
   },
@@ -208,6 +208,32 @@ const demons = [
     "verifier": 5,
     "verifyDate": "2026-02-26",
     "completers": []
+  },
+  {
+    "id": 17,
+    "name": "Bloodbath",
+    "creator": "Riot",
+    "verifier": 6,
+    "verifyDate": "2026-03-01",
+    "completers": [
+      {
+        "playerId": 6,
+        "date": "2026-03-01"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Sharp Minor",
+    "creator": "Giron",
+    "verifier": 7,
+    "verifyDate": "2025-12-16",
+    "completers": [
+      {
+        "playerId": 7,
+        "date": "2025-12-16"
+      }
+    ]
   }
 ];
 

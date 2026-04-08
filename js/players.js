@@ -42,7 +42,16 @@ const players = [
   {
     "id": 6,
     "name": "GMDNurka",
-    "completedDemons": []
+    "completedDemons": [
+      17
+    ]
+  },
+  {
+    "id": 7,
+    "name": "KizyakGD",
+    "completedDemons": [
+      18
+    ]
   }
 ];
 
