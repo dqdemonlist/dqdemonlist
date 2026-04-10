@@ -167,6 +167,19 @@ const demons = [
     "verifier": 7,
     "verifyDate": "2025-12-16",
     "completers": []
+  },
+  {
+    "id": 19,
+    "name": "Allegiance",
+    "creator": "nikroplays",
+    "verifier": 8,
+    "verifyDate": "2026-03-28",
+    "completers": [
+      {
+        "playerId": 8,
+        "date": "2026-03-28"
+      }
+    ]
   }
 ];
 

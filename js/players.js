@@ -7,12 +7,17 @@ const players = [
   {
     "id": 2,
     "name": "Walen0k",
-    "completedDemons": [7]
+    "completedDemons": [
+      7
+    ]
   },
   {
     "id": 3,
     "name": "What",
-    "completedDemons": [1, 2]
+    "completedDemons": [
+      1,
+      2
+    ]
   },
   {
     "id": 5,
@@ -29,6 +34,11 @@ const players = [
   {
     "id": 7,
     "name": "KizyakGD",
+    "completedDemons": []
+  },
+  {
+    "id": 8,
+    "name": "fhfhfh",
     "completedDemons": []
   }
 ];
