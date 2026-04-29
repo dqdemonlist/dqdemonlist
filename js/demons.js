@@ -142,7 +142,12 @@ const demons = [
     "creator": "VelYT",
     "verifier": 6,
     "verifyDate": "2026-01-31",
-    "completers": []
+    "completers": [
+      {
+        "playerId": 1,
+        "date": "2026-04-29"
+      }
+    ]
   },
   {
     "id": 16,
