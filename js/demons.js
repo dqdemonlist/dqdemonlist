@@ -185,6 +185,19 @@ const demons = [
         "date": "2026-03-28"
       }
     ]
+  },
+  {
+    "id": 20,
+    "name": "Blade Of Justice",
+    "creator": "Manix648",
+    "verifier": 6,
+    "verifyDate": "2026-05-01",
+    "completers": [
+      {
+        "playerId": 6,
+        "date": "2026-05-01"
+      }
+    ]
   }
 ];
 
