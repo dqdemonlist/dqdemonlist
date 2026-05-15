@@ -198,6 +198,19 @@ const demons = [
         "date": "2026-05-01"
       }
     ]
+  },
+  {
+    "id": 21,
+    "name": "SUBVERSIVE",
+    "creator": "Snowr33de",
+    "verifier": 1,
+    "verifyDate": "2026-05-15",
+    "completers": [
+      {
+        "playerId": 1,
+        "date": "2026-05-15"
+      }
+    ]
   }
 ];
 
