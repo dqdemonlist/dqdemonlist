@@ -211,6 +211,19 @@ const demons = [
         "date": "2026-05-15"
       }
     ]
+  },
+  {
+    "id": 22,
+    "name": "Crowd Control",
+    "creator": "zDeadLox",
+    "verifier": 8,
+    "verifyDate": "2026-05-26",
+    "completers": [
+      {
+        "playerId": 8,
+        "date": "2026-05-26"
+      }
+    ]
   }
 ];
 
